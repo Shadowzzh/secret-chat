@@ -63,6 +63,7 @@ model User {
     accounts      Account[]
     sessions      Session[]
     posts         Post[]
+    sentMessages  Message[] @relation("SentMessages")
 }
 
 model VerificationToken {
@@ -71,4 +72,13 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+model Message {
+    id        String   @id @default(cuid())
+    content   String
+    createdAt DateTime @default(now())
+
+    senderId String
+    sender   User   @relation("SentMessages", fields: [senderId], references: [id])
 }

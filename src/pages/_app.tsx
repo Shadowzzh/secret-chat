@@ -6,6 +6,10 @@ import { type AppType } from "next/app";
 import { api } from "@/utils/api";
 
 import "@/styles/globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
+import { ModeToggle } from "@/components/toggle-theme";
+import { cn } from "@/lib/utils";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -13,9 +17,21 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
   return (
     <SessionProvider session={session}>
-      <div className={GeistSans.className}>
-        <Component {...pageProps} />
-      </div>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="dark"
+        enableSystem
+        disableTransitionOnChange
+      >
+        <div className={cn("fixed right-10 top-10")}>
+          <ModeToggle />
+        </div>
+        <div className={GeistSans.className}>
+          <Component {...pageProps} />
+        </div>
+
+        <Toaster />
+      </ThemeProvider>
     </SessionProvider>
   );
 };
