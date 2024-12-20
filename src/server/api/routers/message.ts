@@ -1,10 +1,6 @@
-import {
-  createTRPCRouter,
-  protectedProcedure,
-  publicProcedure,
-} from "@/server/api/trpc";
+import { createTRPCRouter, protectedProcedure, publicProcedure } from '@/server/api/trpc';
 
-import { z } from "zod";
+import { z } from 'zod';
 
 /**
  * 消息路由器

@@ -1,13 +1,13 @@
-import { signIn, signOut, useSession } from "next-auth/react";
-import Head from "next/head";
+import { signIn, signOut, useSession } from 'next-auth/react';
+import Head from 'next/head';
 
-import { api } from "@/utils/api";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { SendMessageForm } from "./_components/SendMessageForm";
+import { api } from '@/utils/api';
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+import { SendMessageForm } from './_components/SendMessageForm';
 
 export default function Home() {
-  const hello = api.post.hello.useQuery({ text: "from tRPC" });
+  const hello = api.post.hello.useQuery({ text: 'from tRPC' });
 
   return (
     <>
@@ -17,27 +17,20 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={cn("min-h-screen", "flex flex-col items-center")}>
+      <main className={cn('min-h-screen', 'flex flex-col items-center')}>
         <div
           className={cn(
-            "container",
-            "flex flex-col items-center justify-center",
-            "gap-12 px-4 py-16",
+            'container',
+            'flex flex-col items-center justify-center',
+            'gap-12 px-4 py-16'
           )}
         >
-          <h1
-            className={cn(
-              "text-5xl font-extrabold tracking-tight",
-              "sm:text-[5rem]",
-            )}
-          >
-            <span className={cn("text-[hsl(280,100%,70%)]")}>Secret</span> Chat
+          <h1 className={cn('text-5xl font-extrabold tracking-tight', 'sm:text-[5rem]')}>
+            <span className={cn('text-[hsl(280,100%,70%)]')}>Secret</span> Chat
           </h1>
 
           <div className="flex flex-col items-center gap-2">
-            <p className="text-2xl">
-              {hello.data ? hello.data.greeting : "Loading tRPC query..."}
-            </p>
+            <p className="text-2xl">{hello.data ? hello.data.greeting : 'Loading tRPC query...'}</p>
             <AuthShowcase />
           </div>
         </div>
@@ -56,10 +49,7 @@ function MessageList() {
     <div>
       {messages?.map((message) => {
         return (
-          <div
-            key={message.id}
-            className={cn("flex items-center justify-center")}
-          >
+          <div key={message.id} className={cn('flex items-center justify-center')}>
             <div>{message.sender.name}: </div>
             <div>{message.content}</div>
           </div>
@@ -86,10 +76,8 @@ function AuthShowcase() {
         </>
       )}
 
-      <Button
-        onClick={sessionData ? () => void signOut() : () => void signIn()}
-      >
-        {sessionData ? "Sign out" : "Sign in"}
+      <Button onClick={sessionData ? () => void signOut() : () => void signIn()}>
+        {sessionData ? 'Sign out' : 'Sign in'}
       </Button>
     </div>
   );
