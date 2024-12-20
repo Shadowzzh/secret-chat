@@ -13,13 +13,15 @@ export const messageRouter = createTRPCRouter({
    */
   sendMessage: protectedProcedure
     .input(z.object({ message: z.string() }))
-    .mutation(({ ctx, input }) => {
-      return ctx.db.message.create({
+    .mutation(async ({ ctx, input }) => {
+      const message = await ctx.db.message.create({
         data: {
           content: input.message,
           senderId: ctx.session.user.id,
         },
       });
+
+      return { ...message, sender: ctx.session.user };
     }),
 
   /**

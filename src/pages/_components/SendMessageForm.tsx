@@ -17,6 +17,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { api } from '@/utils/api';
+import { socket } from '@/pages/_app';
 
 const FormSchema = z.object({
   message: z.string().min(2, {
@@ -36,11 +37,15 @@ export const SendMessageForm = () => {
     onError() {
       toast('消息发送失败');
     },
-    onSuccess: (e) => {
+    onSuccess: (data) => {
+      // 广播消息
+      socket.emit('broadcast-message', data);
+
+      // 显示消息
       toast('消息发送成功', {
         description: (
           <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-            <code className="text-white">{JSON.stringify(e, null, 2)}</code>
+            <code className="text-white">{JSON.stringify(data, null, 2)}</code>
           </pre>
         ),
       });

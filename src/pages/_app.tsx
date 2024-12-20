@@ -10,6 +10,12 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/sonner';
 import { ModeToggle } from '@/components/toggle-theme';
 import { cn } from '@/lib/utils';
+import { io } from 'socket.io-client';
+import { SocketProvider } from '@/context/SocketContext';
+
+export const socket = io({
+  path: '/api/socket',
+});
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -18,14 +24,16 @@ const MyApp: AppType<{ session: Session | null }> = ({
   return (
     <SessionProvider session={session}>
       <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-        <div className={cn('fixed right-10 top-10')}>
-          <ModeToggle />
-        </div>
-        <div className={GeistSans.className}>
-          <Component {...pageProps} />
-        </div>
+        <SocketProvider>
+          <div className={cn('fixed right-10 top-10')}>
+            <ModeToggle />
+          </div>
+          <div className={GeistSans.className}>
+            <Component {...pageProps} />
+          </div>
 
-        <Toaster />
+          <Toaster />
+        </SocketProvider>
       </ThemeProvider>
     </SessionProvider>
   );

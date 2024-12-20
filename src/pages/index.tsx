@@ -5,6 +5,7 @@ import { api } from '@/utils/api';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { SendMessageForm } from './_components/SendMessageForm';
+import { useReceiveMessage } from '@/hooks/socket';
 
 export default function Home() {
   const hello = api.post.hello.useQuery({ text: 'from tRPC' });
@@ -43,7 +44,7 @@ export default function Home() {
  * 消息列表
  */
 function MessageList() {
-  const { data: messages } = api.message.getAllMessages.useQuery();
+  const { messages } = useReceiveMessage();
 
   return (
     <div>
@@ -71,7 +72,6 @@ function AuthShowcase() {
           </p>
 
           <MessageList />
-
           <SendMessageForm />
         </>
       )}
