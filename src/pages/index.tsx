@@ -4,7 +4,7 @@ import Head from 'next/head';
 import { api } from '@/utils/api';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { SendMessageForm } from './_components/SendMessageForm';
+import SendMessageForm from './_components/SendMessageForm';
 import { useReceiveMessage } from '@/hooks/socket';
 
 export default function Home() {
