@@ -20,20 +20,29 @@ export default function Home() {
         <div className={cn('flex flex-col items-center justify-center', 'px-4 pt-16')}>
           <div className={cn('flex justify-center')}>
             {/* 用户列表 */}
-            <div className={cn('w-44')}>
+            <div className={cn('hidden w-44 sm:block')}>
               <div className={cn('flex flex-col', 'sticky top-16')}>
                 <ShowSelf />
               </div>
             </div>
 
             {/* 消息列表 */}
-            <div className={cn('w-[30rem]')}>
-              <div className={cn('mb-28 pr-10 pt-10')}>
+            <div className={cn('w-full sm:w-[30rem]')}>
+              <div className={cn('mb-28 pt-10')}>
                 <MessageList />
               </div>
             </div>
 
-            <AuthShowcase />
+            <div
+              className={cn(
+                'fixed bottom-0 left-0',
+                'w-screen bg-background/70 backdrop-blur',
+                'flex flex-col items-center justify-center',
+                'px-4'
+              )}
+            >
+              <UserInterface />
+            </div>
           </div>
         </div>
       </main>
@@ -41,9 +50,7 @@ export default function Home() {
   );
 }
 
-/**
- * 消息列表
- */
+/** 消息列表 */
 function MessageList() {
   const { messages } = useReceiveMessage();
 
@@ -74,21 +81,14 @@ function MessageList() {
   );
 }
 
-function AuthShowcase() {
+/** 用户界面 */
+function UserInterface() {
   const { data: sessionData } = useSession();
 
   return (
-    <div
-      className={cn(
-        'fixed bottom-0 left-0',
-        'w-full bg-background/70 backdrop-blur',
-        'flex flex-col items-center justify-center'
-      )}
-    >
-      <div className={cn('gap-4', 'pl-44')}>
-        <div className={cn('w-[30rem]', 'h-28', 'flex items-center justify-center', 'pr-10')}>
-          {sessionData && <SendMessageForm />}
-        </div>
+    <div className={cn('w-full sm:w-auto gap-4', 'pl-0 sm:pl-44')}>
+      <div className={cn('w-full sm:w-[30rem]', 'h-28', 'flex items-center justify-center')}>
+        {sessionData && <SendMessageForm />}
       </div>
     </div>
   );
