@@ -1,7 +1,6 @@
 import { socket } from '@/pages/_app';
 import { type IMessage } from '@/server/socketHandlers';
 import { api } from '@/utils/api';
-import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 
 /**
@@ -13,6 +12,7 @@ export const useReceiveMessage = () => {
   const { data: messages } = api.message.getAllMessages.useQuery();
 
   useEffect(() => {
+    /** 接收消息并更新 */
     socket.on('receive-message', async (newMessage: IMessage) => {
       // 执行更新
       utils.message.getAllMessages.setData(undefined, (old) => {

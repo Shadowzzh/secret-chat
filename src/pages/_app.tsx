@@ -8,10 +8,9 @@ import { api } from '@/utils/api';
 import '@/styles/globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/sonner';
-import { ModeToggle } from '@/components/toggle-theme';
-import { cn } from '@/lib/utils';
 import { io } from 'socket.io-client';
 import { SocketProvider } from '@/context/SocketContext';
+import Header from '@/pages/_components/Header';
 
 export const socket = io({
   path: '/api/socket',
@@ -25,9 +24,8 @@ const MyApp: AppType<{ session: Session | null }> = ({
     <SessionProvider session={session}>
       <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
         <SocketProvider>
-          <div className={cn('fixed right-10 top-10')}>
-            <ModeToggle />
-          </div>
+          <Header />
+
           <div className={GeistSans.className}>
             <Component {...pageProps} />
           </div>
