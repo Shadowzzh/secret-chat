@@ -7,6 +7,7 @@ import {
   DropdownMenuItem,
 } from '@/components/ui/dropdown-menu';
 import { cn } from '@/lib/utils';
+import { ChevronDownIcon, CornerLeftDownIcon } from 'lucide-react';
 import { signOut, useSession } from 'next-auth/react';
 
 /** 显示自己 */
@@ -16,7 +17,10 @@ const ShowSelf = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className={cn('inline-block')}>
-        <p className="text-2xl">{sessionData?.user?.name}</p>
+        <div className={cn('flex items-center gap-2', 'px-2 py-1')}>
+          {sessionData?.user?.name}
+          <ChevronDownIcon className="h-4 w-4" />
+        </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>我的信息</DropdownMenuLabel>

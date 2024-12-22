@@ -21,7 +21,7 @@ export default function Home() {
           <div className={cn('flex justify-center')}>
             {/* 用户列表 */}
             <div className={cn('hidden w-44 sm:block')}>
-              <div className={cn('flex flex-col', 'sticky top-16')}>
+              <div className={cn('flex flex-col', 'sticky top-16', 'px-4')}>
                 <ShowSelf />
               </div>
             </div>
