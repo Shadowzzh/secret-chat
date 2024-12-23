@@ -1,4 +1,4 @@
-import { ModeToggle } from '@/components/toggle-theme';
+import { ToggleTheme } from '@/pages/_components/toggle-theme';
 import { cn } from '@/lib/utils';
 
 /**
@@ -19,7 +19,7 @@ const Header = () => {
         <span className={cn('text-[hsl(280,100%,70%)]')}>Secret</span> Chat
       </h1>
 
-      <ModeToggle />
+      <ToggleTheme />
     </div>
   );
 };
