@@ -23,7 +23,7 @@ export default function Home() {
             {/* 用户列表 */}
             <div className={cn('hidden w-56 sm:block')}>
               <div className={cn('flex flex-col', 'sticky top-16', 'px-4')}>
-                <ShowSelf />
+                <ShowSelf className={cn('mb-3')} />
                 <OnlineUser />
               </div>
             </div>
@@ -89,7 +89,7 @@ function UserInterface() {
   const { data: sessionData } = useSession();
 
   return (
-    <div className={cn('w-full gap-4 sm:w-auto', 'pl-0 sm:pl-44')}>
+    <div className={cn('w-full gap-4 sm:w-auto', 'pl-0 sm:pl-56')}>
       <div className={cn('w-full sm:w-[30rem]', 'h-28', 'flex items-center justify-center')}>
         {sessionData && <SendMessageForm />}
       </div>

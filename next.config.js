@@ -18,6 +18,16 @@ const config = {
     defaultLocale: 'en',
   },
   transpilePackages: ['geist'],
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+        port: '',
+        pathname: '/u/**',
+      },
+    ],
+  },
 };
 
 export default config;

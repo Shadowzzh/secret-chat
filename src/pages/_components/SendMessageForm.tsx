@@ -65,14 +65,19 @@ const SendMessageForm = (props: SendMessageFormProps) => {
           render={({ field }) => (
             <FormItem className={cn('flex-1')}>
               <FormControl>
-                <Input placeholder="请输入消息" {...field} disabled={createMessage.isPending} />
+                <Input
+                  className={cn('h-12')}
+                  placeholder="请输入消息"
+                  {...field}
+                  disabled={createMessage.isPending}
+                />
               </FormControl>
             </FormItem>
           )}
         />
 
         <Button
-          className={cn('shrink-0')}
+          className={cn('shrink-0', 'h-12 w-28')}
           type="submit"
           variant="secondary"
           disabled={createMessage.isPending}
