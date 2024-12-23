@@ -3,7 +3,7 @@ import { type Http2Server } from 'http2';
 import { type Server as NetServer, type Socket } from 'net';
 import { type NextApiRequest, type NextApiResponse } from 'next';
 import { type Server as SocketIOServer } from 'socket.io';
-import { broadcastMessageHandler } from '@/server/socketHandlers';
+import { broadcastMessageHandler, onlineUserHandler } from '@/server/socketHandlers';
 
 type NextApiResponseServerIo = NextApiResponse & {
   socket: Socket & {
@@ -28,6 +28,7 @@ export default function SocketHandler(req: NextApiRequest, res: NextApiResponseS
 
   io.on('connection', (socket) => {
     broadcastMessageHandler(io, socket);
+    onlineUserHandler(io, socket);
   });
 
   res.end();

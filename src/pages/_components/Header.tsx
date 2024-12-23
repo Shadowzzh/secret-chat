@@ -15,12 +15,7 @@ const Header = () => {
         'bg-background/70 backdrop-blur'
       )}
     >
-      <h1
-        className={cn(
-          'text-lg sm:text-xl',
-          'flex items-center justify-center gap-2'
-        )}
-      >
+      <h1 className={cn('text-lg sm:text-xl', 'flex items-center justify-center gap-2')}>
         <span className={cn('text-[hsl(280,100%,70%)]')}>Secret</span> Chat
       </h1>
 

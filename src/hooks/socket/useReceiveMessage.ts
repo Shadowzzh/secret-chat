@@ -22,7 +22,7 @@ export const useReceiveMessage = () => {
     });
 
     return () => {
-      socket.off('receive-message');
+      socket.off('receive-message'); // 取消监听
     };
   }, [utils.message.getAllMessages]);
 

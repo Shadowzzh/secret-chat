@@ -6,6 +6,7 @@ import SendMessageForm from '@/pages/_components/SendMessageForm';
 import { useReceiveMessage } from '@/hooks/socket';
 import ShowSelf from '@/pages/_components/ShowSelf';
 import { useEffect } from 'react';
+import OnlineUser from './_components/OnlineUser';
 
 export default function Home() {
   return (
@@ -20,9 +21,10 @@ export default function Home() {
         <div className={cn('flex flex-col items-center justify-center', 'px-4 pt-16')}>
           <div className={cn('flex justify-center')}>
             {/* 用户列表 */}
-            <div className={cn('hidden w-44 sm:block')}>
+            <div className={cn('hidden w-56 sm:block')}>
               <div className={cn('flex flex-col', 'sticky top-16', 'px-4')}>
                 <ShowSelf />
+                <OnlineUser />
               </div>
             </div>
 
@@ -33,6 +35,7 @@ export default function Home() {
               </div>
             </div>
 
+            {/* 用户界面 */}
             <div
               className={cn(
                 'fixed bottom-0 left-0',
@@ -86,7 +89,7 @@ function UserInterface() {
   const { data: sessionData } = useSession();
 
   return (
-    <div className={cn('w-full sm:w-auto gap-4', 'pl-0 sm:pl-44')}>
+    <div className={cn('w-full gap-4 sm:w-auto', 'pl-0 sm:pl-44')}>
       <div className={cn('w-full sm:w-[30rem]', 'h-28', 'flex items-center justify-center')}>
         {sessionData && <SendMessageForm />}
       </div>

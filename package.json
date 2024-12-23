@@ -12,6 +12,7 @@
     "dev": "next dev",
     "postinstall": "prisma generate",
     "lint": "next lint",
+    "check": "pnpm run lint && pnpm run check:types",
     "start": "next start"
   },
   "dependencies": {
