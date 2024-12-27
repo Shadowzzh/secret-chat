@@ -1,10 +1,11 @@
+import { memo } from 'react';
 import { ToggleTheme } from '@/pages/_components/toggle-theme';
 import { cn } from '@/lib/utils';
 
 /**
  * 头部
  */
-const Header = () => {
+const Header = memo(() => {
   return (
     <div
       className={cn(
@@ -22,6 +23,8 @@ const Header = () => {
       <ToggleTheme />
     </div>
   );
-};
+});
+
+Header.displayName = 'Header';
 
 export default Header;

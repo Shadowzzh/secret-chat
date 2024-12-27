@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import React, { memo } from 'react';
 import { Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
 
@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 
 /** 切换主题 */
-export function ToggleTheme() {
+export const ToggleTheme = memo(function ToggleTheme() {
   const { setTheme } = useTheme();
 
   return React.useMemo(
@@ -36,4 +36,4 @@ export function ToggleTheme() {
     ),
     [setTheme]
   );
-}
+});

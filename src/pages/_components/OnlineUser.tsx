@@ -1,9 +1,11 @@
+import { memo } from 'react';
 import { useOnlineUser } from '@/hooks/socket';
 import { cn } from '@/lib/utils';
+import { type UserStatus } from '@/server/socketHandlers';
 import { PersonIcon } from '@radix-ui/react-icons';
 
 /** 在线用户 */
-const OnlineUser = () => {
+const OnlineUser = memo(() => {
   const { onlineUsers } = useOnlineUser();
 
   return (
@@ -25,21 +27,24 @@ const OnlineUser = () => {
           key={user.id}
         >
           {user.name}
-          <Tag status={'online'} />
+          <Tag status={user.status} />
         </div>
       ))}
     </div>
   );
-};
+});
+
+OnlineUser.displayName = 'OnlineUser';
 
 /** 用户状态标签 */
-function Tag({ status }: { status: 'online' | 'idle' }) {
+function Tag({ status }: { status: UserStatus }) {
   return (
     <div
+      data-status={status}
       className={cn(
         'size-2 rounded-full',
-        status === 'online' && 'bg-green-500',
-        status === 'idle' && 'bg-yellow-500'
+        'data-[status=online]:bg-green-500',
+        'data-[status=away]:bg-yellow-500'
       )}
     />
   );
