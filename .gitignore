@@ -47,3 +47,6 @@ yarn-error.log*
 .idea
 # Million Lint
 .million
+
+# cursor
+.cursorrules
